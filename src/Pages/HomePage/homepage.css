@@ -1,0 +1,36 @@
+.quiz-header {
+    width: 90%;
+    margin: auto;
+    margin-top: 3.8rem;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    min-height: 7.7rem;
+    column-gap: 2.3rem;
+    height: max-content;
+  }
+  
+  .desc-card {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  .rules-card {
+    border-radius: 10px;
+    padding: 2rem;
+    background-color: var(--violet-color);
+  }
+  .rules-card ol {
+    padding-left: 2rem;
+  }
+  
+  .quiz-content {
+    margin: auto;
+    width: 90%;
+    margin-top: 3.8rem;
+  }
+  
+  .quiz-cards {
+    display: grid;
+    gap: 2.3rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
