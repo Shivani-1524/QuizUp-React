@@ -1,10 +1,12 @@
 import React from 'react'
 import './homepage.css'
+import { Navbar } from '../../Components/Navbar/Navbar'
 
 
 const HomePage = () => {
     return (
         <div>
+            <Navbar />
             <section className="quiz-header">
                 <div className="desc-card">
                     <h1 className="rg-title white-txt">QuizUp</h1>
