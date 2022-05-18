@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import './homepage.css'
 import { Navbar } from '../../Components/Navbar/Navbar'
 import { Footer } from '../../Components/Footer.js'
-import axios from "axios"
 import { CategoryCard } from './CategoryCard'
+import { handleGetApi } from '../../Utils/getRequests'
+
 
 const HomePage = () => {
     const [quizData, setQuizData] = useState(false)
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get("/api/quizzes")
-            setQuizData(data.quizzes)
+            const { data, error } = await handleGetApi("/api/quizzes")
+            data ? setQuizData(data.quizzes) : console.log(error)
         })()
     }, [])
     return (
