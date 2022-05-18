@@ -1,8 +1,14 @@
-import { v4 as uuid } from "uuid";
+
+import GenshinImg from '../../Assets/images/Genshin-Impact-Logo.jfif'
+import ValorantImg from '../../Assets/images/valorant.png'
+import MinecraftImg from '../../Assets/images/minecraft.jpg'
+
 
 export const quizzes = [{
-    _id: uuid(),
-    quizName: "Valorant",
+    _id: 1,
+    quizName: "Riot Games: Valorant Quiz",
+    quizImg: ValorantImg,
+    routeName: "/valorantquiz",
     questions: [
         {
             questionNumber: 1,
@@ -52,8 +58,10 @@ export const quizzes = [{
     ],
     quizAnswer: [1, 0, 1, 0, 2]
 }, {
-    _id: uuid(),
-    quizName: "Genshin",
+    _id: 2,
+    quizName: "Mihoyo: Genshin Quiz",
+    quizImg: GenshinImg,
+    routeName: "/genshinquiz",
     questions: [
         {
             questionNumber: 1,
@@ -100,5 +108,47 @@ export const quizzes = [{
         },
     ],
     quizAnswer: [2, 0, 0, 1, 0]
+}, {
+    _id: 3,
+    quizName: "Mihoyo: Genshin Quiz",
+    quizImg: MinecraftImg,
+    routeName: "/genshinquiz",
+    questions: [
+        {
+            questionNumber: 1,
+            question: "How many Fatui Harbingers are there?",
+            options: [
+                8, 7, 11
+            ],
+        },
+        {
+            questionNumber: 2,
+            question: " What is the Japanese name of Ningguang?",
+            options: [
+                "Gyoukou",
+                "Kouhoy",
+                "Waifu",
+            ],
+        },
+        {
+            questionNumber: 3,
+            question: "What is the name of the Sea Monster that Beidou defeated?",
+            options: [
+                "Haishan",
+                "Rumple",
+                "Monstr"
+            ],
+        },
+        {
+            questionNumber: 4,
+            question: " Who is Khazua's friend who lost to Kujou Sara?",
+            options: [
+                "Momio",
+                "Tomo",
+                "Grux",
+            ],
+        },
+    ],
+    quizAnswer: [2, 0, 0, 1]
 },
 ]

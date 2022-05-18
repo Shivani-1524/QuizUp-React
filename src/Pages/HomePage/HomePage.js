@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './homepage.css'
 import { Navbar } from '../../Components/Navbar/Navbar'
-
+import { Footer } from '../../Components/Footer.js'
+import axios from "axios"
+import { CategoryCard } from './CategoryCard'
 
 const HomePage = () => {
+    const [quizData, setQuizData] = useState(false)
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get("/api/quizzes")
+            setQuizData(data.quizzes)
+        })()
+
+    }, [])
     return (
         <div>
             <Navbar />
@@ -23,6 +33,13 @@ const HomePage = () => {
                     </ol>
                 </div>
             </section>
+            <section className="quiz-content">
+                <h1 className="md-title new-font">Categories</h1>
+                <div className="quiz-cards mg-t-30">
+                    {quizData && quizData.map(item => <CategoryCard props={item} />)}
+                </div>
+            </section>
+            <Footer />
         </div>
     )
 }

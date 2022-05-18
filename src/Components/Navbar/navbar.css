@@ -14,6 +14,12 @@
   .logout-icon::before {
     content: "\f2f5";
   }
-  .user-icon::before{
-    content:"\f007" !important;
-  }
+
+.icon-btn.hide-md.dark-bg-icon, .icon-btn.show-md.dark-bg-icon{
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.nav-search{
+  padding-left: 7px;
+}
