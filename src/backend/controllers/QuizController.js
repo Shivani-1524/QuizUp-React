@@ -16,6 +16,5 @@ export const getQuizById = function (schema, request) {
 };
 
 export const getAllQuizzesHandler = function () {
-    console.log("PODIDUJAOI")
     return new Response(200, {}, { quizzes: this.db.quizzes });
 };
