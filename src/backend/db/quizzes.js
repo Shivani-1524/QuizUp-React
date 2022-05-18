@@ -2,13 +2,12 @@
 import GenshinImg from '../../Assets/images/Genshin-Impact-Logo.jfif'
 import ValorantImg from '../../Assets/images/valorant.png'
 import MinecraftImg from '../../Assets/images/minecraft.jpg'
-
+import { v4 as uuid } from 'uuid';
 
 export const quizzes = [{
-    _id: 1,
+    _id: uuid(),
     quizName: "Riot Games: Valorant Quiz",
     quizImg: ValorantImg,
-    routeName: "/valorantquiz",
     questions: [
         {
             questionNumber: 1,
@@ -58,10 +57,9 @@ export const quizzes = [{
     ],
     quizAnswer: [1, 0, 1, 0, 2]
 }, {
-    _id: 2,
+    _id: uuid(),
     quizName: "Mihoyo: Genshin Quiz",
     quizImg: GenshinImg,
-    routeName: "/genshinquiz",
     questions: [
         {
             questionNumber: 1,
@@ -109,7 +107,7 @@ export const quizzes = [{
     ],
     quizAnswer: [2, 0, 0, 1, 0]
 }, {
-    _id: 3,
+    _id: uuid(),
     quizName: "Mihoyo: Genshin Quiz",
     quizImg: MinecraftImg,
     routeName: "/genshinquiz",

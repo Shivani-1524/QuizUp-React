@@ -12,7 +12,6 @@ const HomePage = () => {
             const { data } = await axios.get("/api/quizzes")
             setQuizData(data.quizzes)
         })()
-
     }, [])
     return (
         <div>

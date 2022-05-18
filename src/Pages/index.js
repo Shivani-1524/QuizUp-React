@@ -1,4 +1,3 @@
 import { HomePage } from './HomePage/HomePage'
-import { GenshinPage } from './QuizPages/GenshinPage'
-import { ValorantPage } from './QuizPages/ValorantPage'
-export { HomePage, GenshinPage, ValorantPage }
+import { QuizPage } from './QuizPages/QuizPage'
+export { HomePage, QuizPage }
