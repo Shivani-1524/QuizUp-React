@@ -36,7 +36,7 @@ const HomePage = () => {
             <section className="quiz-content">
                 <h1 className="md-title new-font">Categories</h1>
                 <div className="quiz-cards mg-t-30">
-                    {quizData && quizData.map(item => <CategoryCard props={item} />)}
+                    {quizData && quizData.map(item => <CategoryCard key={item._id} props={item} />)}
                 </div>
             </section>
             <Footer />

@@ -110,7 +110,6 @@ export const quizzes = [{
     _id: uuid(),
     quizName: "Mihoyo: Genshin Quiz",
     quizImg: MinecraftImg,
-    routeName: "/genshinquiz",
     questions: [
         {
             questionNumber: 1,

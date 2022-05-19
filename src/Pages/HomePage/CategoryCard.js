@@ -5,7 +5,6 @@ const CategoryCard = ({ props }) => {
   const { quizImg, quizName, quizAnswer, _id } = props
   const quizNameSplit = quizName.split(':')
   const questionsNum = quizAnswer.length
-  console.log(_id)
   return (
     <Link to={`/quiz/${_id}`}>
       <div className="card ver-lg-card dark-bg light-txt">
