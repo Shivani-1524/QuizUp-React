@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react'
 import { useQuiz } from '../../../Context/quiz-context'
 
-const Question = ({ props }) => {
-    const { options, question, questionNumber, clickedSubmit, correctOptions } = props
-    const { setOptionsSelected } = useQuiz()
+const Question = ({ props, submitBtnVisible, correctOptions }) => {
+    const { options, question, questionNumber } = props
+    const { setOptionsSelected, optionsSelected } = useQuiz()
+
     const getColorClass = (index) => {
+        if (!submitBtnVisible) {
+            if (optionsSelected[questionNumber - 1] == correctOptions[questionNumber - 1] && index == optionsSelected[questionNumber - 1]) {
+                console.log(index)
+                return 'green-bg'
+            }
+            if (optionsSelected[questionNumber - 1] != correctOptions[questionNumber - 1] && index == optionsSelected[questionNumber - 1]) {
+                return 'red-bg'
+            }
+            else return 'grey-bg'
+        }
         switch (index) {
             case 0: return 'first'
             case 1: return 'second'
@@ -12,11 +23,12 @@ const Question = ({ props }) => {
             default: return ''
         }
     }
-    const handleOptionClick = (index) => {
-        setOptionsSelected(prev => ({ ...prev, [questionNumber - 1]: index }))
+
+    const handleOptionClick = (selectedOptIndex) => {
+        setOptionsSelected(prev => ({ ...prev, [questionNumber - 1]: selectedOptIndex }))
     }
     (() => {
-        if (clickedSubmit === false) console.log("PODI MOMMYYY")
+        console.log("PODI MOMMYYY")
     })()
     return (
         <div className="quiz-container">

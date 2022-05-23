@@ -12,10 +12,33 @@ const QuizPage = () => {
     const { questions, quizAnswer } = questionsData
     const quizHeading = questionsData?.quizName?.split(':')[1].toUpperCase()
     const { setSelectedQuiz, optionsSelected } = useQuiz()
-    const [quizScore, setQuizScore] = useState(1)
+    const [quizScore, setQuizScore] = useState('0')
     const [showSubmitBtn, setShowSubmitBtn] = useState(true)
+    const [timeLeft, setTimeLeft] = useState(10)
+    const [showModal, setShowModal] = useState(false)
+
+
+
+    const handleQuizSubmit = () => {
+        setShowSubmitBtn(false)
+        quizAnswer.forEach((correctAnswer, index) => {
+            if (optionsSelected[index] === correctAnswer) {
+                setQuizScore(prev => parseInt(prev) + 1)
+                console.log("press f")
+            }
+        })
+    }
+
+    const handleModalScoreClick = () => {
+        setShowSubmitBtn(false)
+        setShowModal(false)
+        handleQuizSubmit()
+    }
+
+
 
     useEffect(() => {
+
         (async () => {
             const { data, error } = await handleGetApi(`/api/quiz/${quizId}`)
             console.log(data)
@@ -26,26 +49,18 @@ const QuizPage = () => {
                 console.log(error)
             }
         })()
-    }, [])
-
-    const handleQuizSubmit = () => {
-        setShowSubmitBtn(false)
-        for (let [i, ans] of quizAnswer.entries()) {
-            if (optionsSelected[i] === ans) {
-                console.log('myru', quizScore)
-                setQuizScore(prev => prev + 1)
-            }
-        }
-        console.log("in for", quizScore)
-    }
+        const timer =
+            timeLeft > 0 && setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+        timeLeft <= 1 && setShowModal(true)
+        return () => clearInterval(timer);
+    }, [timeLeft])
 
     return (
         <div className="content-container">
-
-            {/* <div className="quiz-timer">
-                <p className="md-title violet-txt bold">TIME LEFT : <span id="timer-txt" className="orange-txt">00:30</span></p>
+            <div className="quiz-timer">
+                <p className="md-title violet-txt bold">TIME LEFT : <span className="orange-txt">00:{timeLeft}</span></p>
             </div>
-            <div className="modal-wrapper" id="modal-wrapper">
+            {showModal && <div className="modal-wrapper">
                 <div className="modal-container">
                     <div className="modal-title">
                         <h4 className="rg-title">
@@ -56,17 +71,18 @@ const QuizPage = () => {
                         Nice try 😀 but you've used up your time.
                     </p>
                     <div className="modal-btn-wrapper mg-t-20">
-                        <a href="../index.html">
-                            <button className="btn secondary-outlined-btn modal-btn" id="modal-btn-cancel">
+                        <Link to="/">
+                            <button className="btn secondary-outlined-btn modal-btn">
                                 Back to Home
                             </button>
-                        </a>
-                        <button id="time-up-submit modal-btn-ok" className="btn primary-btn solid">
+                        </Link>
+                        <button onClick={handleModalScoreClick} className="btn primary-btn solid">
                             See Score
                         </button>
                     </div>
                 </div>
-            </div> */}
+            </div>
+            }
 
 
             {questionsData &&
@@ -76,8 +92,7 @@ const QuizPage = () => {
                     </header>
 
                     <div className="quiz-page">
-                        {questions.map(quest => <Question props={quest} key={quest.questionNumber} correctOptions={quizAnswer} clickedSubmit={showSubmitBtn} />)}
-
+                        {questions.map(quest => <Question props={quest} key={quest.questionNumber} correctOptions={quizAnswer} submitBtnVisible={showSubmitBtn} />)}
                         {showSubmitBtn && <button id="btn-quiz-submit" onClick={handleQuizSubmit} className="btn primary-btn solid btn-quiz-sbmt">Get Your Scores</button>}
                         {!showSubmitBtn && <div>
                             <p className="rg-p score center-txt bold">Your quiz score: {quizScore}</p>

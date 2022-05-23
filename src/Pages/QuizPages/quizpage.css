@@ -139,3 +139,17 @@ a {
 .content-container {
   margin-bottom: 7.7rem;
 }
+
+
+.green-bg{
+  background-color: var(--green-color);
+}
+.red-bg{
+  background-color: var(--red-color);
+}
+.grey-bg{
+  background-color: var(--light-grey);
+}
+.modal-wrapper{
+  display: flex;
+}
