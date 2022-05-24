@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom"
-import NavLogo from "../../Assets/nav-logo.png"
+import NavLogo from "../../Assets/images/nav-logo.png"
 import './navbar.css'
+import { FontAwesomeIcon, faUser, faMagnifyingGlass, faRightFromBracket, faBars } from '../../Assets/icons/icons'
 
 const Navbar = () => {
     return (
-        <nav className="navbar">
+        <nav className="navbar" >
             <div className="nav-logo">
-                <img src={NavLogo} alt="logo" />
+                <img src={NavLogo} alt="arcade logo" />
             </div>
             <div className="nav-items">
                 <Link to="/" className="nav-link sm-title hide-md">Quiz Up</Link>
@@ -16,16 +17,11 @@ const Navbar = () => {
             <div className="nav-icon-items">
                 <div className="nav-search-bar hide-sm">
                     <input className="search-bar" type="text" placeholder="Search.." />
-                    <i className="fa fa-brands fa-searchengin"></i>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} className="nav-search" />
                 </div>
-                <Link to='/login'>
-                    <button id="dark-bg-icon" className="btn icon-btn hide-md">
-                        <i className="fa fa-solid fa-user"></i>
-                    </button>
-                </Link>
-                <button id="dark-bg-icon" className="btn icon-btn show-md">
-                    <i className="fas fa-solid fa-bars"></i>
-                </button>
+                <FontAwesomeIcon icon={faUser} className="btn icon-btn hide-md dark-bg-icon" />
+                <FontAwesomeIcon icon={faRightFromBracket} className="btn icon-btn hide-md dark-bg-icon" />
+                <FontAwesomeIcon icon={faBars} className="btn icon-btn show-md dark-bg-icon" />
             </div>
         </nav>
     )

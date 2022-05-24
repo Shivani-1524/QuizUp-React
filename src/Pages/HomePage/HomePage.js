@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './homepage.css'
+import { Navbar } from '../../Components/Navbar/Navbar'
+import { Footer } from '../../Components/Footer.js'
+import { CategoryCard } from './CategoryCard'
+import { handleGetApi } from '../../Utils/getRequests'
 
 
 const HomePage = () => {
+    const [quizData, setQuizData] = useState(false)
+    useEffect(() => {
+        (async () => {
+            const { data, error } = await handleGetApi("/api/quizzes")
+            data ? setQuizData(data.quizzes) : console.log(error)
+        })()
+
+    }, [])
     return (
         <div>
+            <Navbar />
             <section className="quiz-header">
                 <div className="desc-card">
                     <h1 className="rg-title white-txt">QuizUp</h1>
@@ -21,6 +34,13 @@ const HomePage = () => {
                     </ol>
                 </div>
             </section>
+            <section className="quiz-content">
+                <h1 className="md-title new-font">Categories</h1>
+                <div className="quiz-cards mg-t-30">
+                    {quizData && quizData.map(item => <CategoryCard props={item} />)}
+                </div>
+            </section>
+            <Footer />
         </div>
     )
 }
