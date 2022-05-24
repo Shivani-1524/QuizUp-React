@@ -4,9 +4,9 @@ import { faCodeBranch, faLinkedin, FontAwesomeIcon, faMedium, faTwitter } from '
 
 const Footer = () => {
     return (
-        <footer class="docs-footer white-bg">
-            <p class="sm-p mg-t-15">Made with 💖 by Shivani</p>
-            <div class="flex-row  mg-t-10">
+        <footer className="docs-footer white-bg">
+            <p className="sm-p mg-t-15">Made with 💖 by Shivani</p>
+            <div className="flex-row  mg-t-10">
                 <a target="_blank" rel="noreferrer" href="https://twitter.com/Shivani07517015">
                     <FontAwesomeIcon icon={faTwitter} className="btn icon-btn" />
                 </a>
@@ -14,7 +14,7 @@ const Footer = () => {
                     <FontAwesomeIcon icon={faMedium} className="btn icon-btn" />
                 </a>
                 <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/shivani-pothirajan-2b276996/">
-                    <button class="btn icon-btn">
+                    <button className="btn icon-btn">
                         <FontAwesomeIcon icon={faLinkedin} className="btn icon-btn" />
                     </button>
                 </a>
