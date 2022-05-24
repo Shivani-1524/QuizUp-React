@@ -1,2 +1,3 @@
 import { HomePage } from './HomePage/HomePage'
-export { HomePage }
+import { ScorePage } from './Scorepage/ScorePage'
+export { HomePage, ScorePage }
