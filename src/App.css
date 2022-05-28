@@ -49,6 +49,10 @@
     height: max-content;
   }
 
+  .option:hover, .option :hover {
+    cursor: pointer;
+  }
+
   footer .icon-btn{
     width: 2.3rem;
     color: var(--primary-color);

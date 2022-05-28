@@ -1,22 +1,21 @@
-body {
-    background-color: var(--primary-color);
-  }
+.result-page{
+  height: 100vh;
+  overflow:hidden;
+  background-color: var(--primary-color);
+}
   
   .result-container {
     width: 100%;
-    height: 90vh;
+    height: 100%;
     flex-direction: column;
     gap: 20px;
   }
   
   .result-gif {
     position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    height: 90%;
+    left: -20px;
+    top: 10px;
+    transform: rotate(160deg);
   }
   
   .stat {
@@ -28,7 +27,7 @@ body {
     width: 20%;
   }
   
-  .fab.bottom-left {
+  .fab.bottom-right {
     bottom: 20px;
     right: 20px;
   }
