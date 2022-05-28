@@ -10,12 +10,11 @@
   position: fixed;
   bottom: 10px;
   right: 20px;
+  background-color: var(--violet-color);
+  padding: 10px;
+  border-radius: 7px;
 }
 
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
 
 .link-respage {
   display: block;
@@ -113,11 +112,6 @@ a {
   background-color: var(--blue-gradient);
 }
 
-/* selects all child elements */
-.options *:hover {
-  cursor: pointer;
-}
-
 .options input {
   position: absolute;
 }
@@ -139,7 +133,6 @@ a {
 .content-container {
   margin-bottom: 7.7rem;
 }
-
 
 .green-bg{
   background-color: var(--green-color);

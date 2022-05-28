@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useQuiz } from '../../../Context/quiz-context'
 
 const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const { options, question, questionNumber } = props
-    const { setOptionsSelected, optionsSelected } = useQuiz()
+    const { quizDispatch, quizState } = useQuiz()
+    const [correctAnsCount, setCorrectAnsCount] = useState(1)
+    const [wrongAnsCount, setWrongAnsCount] = useState(1)
 
     const getColorClass = (index) => {
-        if (!submitBtnVisible) {
-            if (optionsSelected[questionNumber - 1] == correctOptions[questionNumber - 1] && index == optionsSelected[questionNumber - 1]) {
-                console.log(index)
+        if (submitBtnVisible) {
+            if (quizState.optionsSelected[questionNumber - 1] == correctOptions[questionNumber - 1] && index == quizState.optionsSelected[questionNumber - 1]) {
+                // quizDispatch({ type: 'SET_QUIZ_STATS', payload: 'correct' })
+                // setCorrectAnsCount(prev => prev + 1)
                 return 'green-bg'
             }
-            if (optionsSelected[questionNumber - 1] != correctOptions[questionNumber - 1] && index == optionsSelected[questionNumber - 1]) {
+            if (quizState.optionsSelected[questionNumber - 1] != correctOptions[questionNumber - 1] && index == quizState.optionsSelected[questionNumber - 1]) {
+                // quizDispatch({ type: 'SET_QUIZ_STATS', payload: 'wrong' })
+                // setWrongAnsCount(prev => prev + 1)
+                console.log("hi")
                 return 'red-bg'
             }
             else return 'grey-bg'
@@ -23,13 +29,16 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
             default: return ''
         }
     }
-
     const handleOptionClick = (selectedOptIndex) => {
-        setOptionsSelected(prev => ({ ...prev, [questionNumber - 1]: selectedOptIndex }))
+        quizDispatch({ type: 'SET_OPTIONS_SELECTED', payload: { selectedOpt: selectedOptIndex, optKey: questionNumber - 1 } })
     }
-    (() => {
-        console.log("PODI MOMMYYY")
-    })()
+
+    useEffect(() => {
+        return () => {
+            quizDispatch({ type: 'SET_QUIZ_STATS', payload: { correctCount: correctAnsCount, wrongCount: wrongAnsCount } })
+        }
+    }, [])
+
     return (
         <div className="quiz-container">
             <p className="rg-title new-font bold mb-20">Question {questionNumber}.</p>
@@ -39,7 +48,7 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
                     const colorClass = getColorClass(index)
                     const inputLabelLink = `q${questionNumber}-op${index}`
                     return <div key={index}>
-                        <li className={`${colorClass} solid`}>
+                        <li className={`${colorClass} solid option`}>
                             <input type="radio" id={inputLabelLink} name={`q${questionNumber}-ans`} />
                             <label onClick={() => handleOptionClick(index)} htmlFor={inputLabelLink}>{option}</label>
                         </li>
