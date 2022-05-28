@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const loginUser = async (loginData) => {
     try {
-        console.log("INNN22", loginData)
         const res = await axios.post('/api/auth/login', { ...loginData })
         const encodedToken = res.data.encodedToken
         axios.defaults.headers.common['authorization'] = encodedToken;
@@ -15,7 +14,6 @@ const loginUser = async (loginData) => {
             }
         }
     } catch (err) {
-        console.log("INNN33")
         return {
             data: "",
             msg: "Please Enter Valid Details",

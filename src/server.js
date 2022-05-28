@@ -6,6 +6,7 @@ import {
 import { getQuizById, getAllQuizzesHandler } from "./backend/controllers/QuizController"
 import { users } from "./backend/db/users";
 import { quizzes } from "./backend/db/quizzes";
+import { postUserQuizStats, getuserQuizStats } from "./backend/controllers/UserStatsController";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -16,6 +17,7 @@ export function makeServer({ environment = "development" } = {}) {
     models: {
       user: Model,
       quizzes: Model,
+      quizStats: Model,
     },
 
     // Runs on the start of the server
@@ -26,7 +28,7 @@ export function makeServer({ environment = "development" } = {}) {
         server.create("quiz", { ...item });
       });
       users.forEach((item) =>
-        server.create("user", { ...item })
+        server.create("user", { ...item, quizStats: [] })
       );
     },
 
@@ -40,6 +42,10 @@ export function makeServer({ environment = "development" } = {}) {
       //quiz routes
       this.get("/quizzes", getAllQuizzesHandler.bind(this));
       this.get("/quiz/:quizId", getQuizById.bind(this));
+
+      //quizstats routes
+      this.post("/user/quizStat", postUserQuizStats.bind(this));
+      this.get("/user/quizStats", getuserQuizStats.bind(this));
     },
   });
 }
