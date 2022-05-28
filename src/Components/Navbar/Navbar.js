@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import NavLogo from "../../Assets/images/nav-logo.png"
 import './navbar.css'
-import { FontAwesomeIcon, faUser, faMagnifyingGlass, faRightFromBracket, faBars } from '../../Assets/icons/icons'
+import { FontAwesomeIcon, faUser, faMagnifyingGlass, faRightFromBracket, faBars, faCircleUser } from '../../Assets/icons/icons'
+import { useAuth } from '../../Context/auth-context';
 
 const Navbar = () => {
+    const { isLoggedIn, setIsLoggedIn } = useAuth()
+    const handleUserLogout = () => {
+        localStorage.removeItem('userToken');
+        setIsLoggedIn(false)
+    }
     return (
         <nav className="navbar" >
             <div className="nav-logo">
@@ -19,8 +25,8 @@ const Navbar = () => {
                     <input className="search-bar" type="text" placeholder="Search.." />
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="nav-search" />
                 </div>
-                <FontAwesomeIcon icon={faUser} className="btn icon-btn hide-md dark-bg-icon" />
-                <FontAwesomeIcon icon={faRightFromBracket} className="btn icon-btn hide-md dark-bg-icon" />
+                {isLoggedIn ? <Link to="/profile"><FontAwesomeIcon icon={faCircleUser} className="btn icon-btn hide-md dark-bg-icon" /></Link> : <Link to="/login"><FontAwesomeIcon icon={faUser} className="btn icon-btn hide-md dark-bg-icon" /></Link>}
+                {isLoggedIn && <Link to="/logout"><FontAwesomeIcon onClick={handleUserLogout} icon={faRightFromBracket} className="btn icon-btn hide-md dark-bg-icon" /></Link>}
                 <FontAwesomeIcon icon={faBars} className="btn icon-btn show-md dark-bg-icon" />
             </div>
         </nav>

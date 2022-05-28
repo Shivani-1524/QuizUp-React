@@ -3,7 +3,7 @@ import './homepage.css'
 import { Navbar } from '../../Components/Navbar/Navbar'
 import { Footer } from '../../Components/Footer.js'
 import { CategoryCard } from './CategoryCard'
-import { handleGetApi } from '../../Utils/getRequests'
+import { handleGetApi } from '../../Utils/get-requests'
 import { useQuiz } from '../../Context/quiz-context'
 
 

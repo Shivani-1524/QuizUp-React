@@ -1,4 +1,8 @@
 import { HomePage } from './HomePage/HomePage'
 import { ScorePage } from './Scorepage/ScorePage'
 import { QuizPage } from './QuizPages/QuizPage'
-export { HomePage, QuizPage, ScorePage }
+import { LoginPage } from './AuthPages/LoginPage'
+import { LogoutPage } from './AuthPages/LogoutPage'
+import { SignupPage } from './AuthPages/SignupPage'
+import { ProfilePage } from './ProfilePage/ProfilePage'
+export { HomePage, QuizPage, ScorePage, SignupPage, LoginPage, LogoutPage, ProfilePage }

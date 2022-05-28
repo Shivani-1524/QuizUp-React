@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './quizpage.css'
 import { useParams } from 'react-router-dom'
-import { handleGetApi } from '../../Utils/getRequests'
+import { handleGetApi } from '../../Utils/get-requests'
 import { Question } from './Components/Question'
 import { useQuiz } from '../../Context/quiz-context'
 import { Link } from 'react-router-dom'
