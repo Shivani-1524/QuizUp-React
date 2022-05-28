@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './quizpage.css'
 import { useParams } from 'react-router-dom'
 import { handleGetApi } from '../../Utils/get-requests'
@@ -7,6 +7,7 @@ import { useQuiz } from '../../Context/quiz-context'
 import { Link } from 'react-router-dom'
 import { TimerModal } from './Components/TimerModal'
 import { Timer } from './Components/Timer'
+import { handlePostStat } from '../../Utils/quizstats-requests'
 
 const QuizPage = () => {
 
@@ -17,7 +18,10 @@ const QuizPage = () => {
     const [questionsData, setQuestionsData] = useState(false)
     const { questions, quizAnswer } = questionsData
     const quizHeading = questionsData?.quizName?.split(':')[1].toUpperCase()
-
+    const valueRef = useRef();
+    //knowledgelevel->no.ofquizattempted
+    //coins->correctanswers*5-no.ofattempts*3
+    //score->correctanswers*10/no.of.attempts
     const handleQuizSubmit = () => {
         setQuizSubmit(true)
         quizAnswer.forEach((correctAnswer, index) => {
@@ -32,6 +36,7 @@ const QuizPage = () => {
                 quizDispatch({ type: "SET_WRONGANS" })
             }
         })
+
     }
 
     const handleModalScoreClick = () => {
@@ -40,17 +45,28 @@ const QuizPage = () => {
     }
 
     useEffect(() => {
+        valueRef.current = quizState;
+    }, [quizState])
+
+    useEffect(() => {
         (async () => {
             const { data, error } = await handleGetApi(`/api/quiz/${quizId}`)
             console.log(data)
             if (data) {
                 setQuestionsData(data?.quiz)
-                quizDispatch({ type: 'SET_SELECTED_QUIZ', payload: data?.quiz?.quizName })
+                quizDispatch({ type: 'SET_SELECTED_QUIZ', payload: { quizName: data?.quiz?.quizName, quizId: data?.quiz?._id } })
             } else {
                 console.log(error)
             }
         })()
-
+        return async () => {
+            const currentQuizStat = {
+                quizScores: { ...valueRef.current.quizScore },
+                quizId: { ...valueRef.current.selectedQuiz }
+            }
+            const res = await handlePostStat(currentQuizStat)
+            !res?.success && console.error(res?.errorData)
+        }
     }, [])
 
 

@@ -18,8 +18,9 @@ const ScorePage = (props) => {
         }
     };
     const { quizState } = useQuiz()
-    const quizTitle = quizState.selectedQuiz.split(':')[1].toUpperCase()
+    const quizTitle = quizState.selectedQuiz.quizName.split(':')[1].toUpperCase()
     const currentURL = window.location.href
+
     return (
         <div className="result-page">
             <Navbar />

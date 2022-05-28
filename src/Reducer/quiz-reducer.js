@@ -1,6 +1,7 @@
+
+
 const initQuizStats = {
-    selectedQuiz: '',
-    attemptedQuizStats: [],
+    selectedQuiz: {},
     optionsSelected: {},
     quizScore: { correctAns: '0', incorrectAns: '0', unanswered: '0' }
 }
@@ -8,9 +9,7 @@ const initQuizStats = {
 const quizReducer = (state, { type, payload }) => {
     switch (type) {
         case 'SET_SELECTED_QUIZ':
-            return { ...state, selectedQuiz: payload }
-        case 'SET_ATTEMPTED_QUIZ':
-            return { ...state, attemptedQuizStats: { ...state.attemptedQuiz, [payload]: 1 } }
+            return { ...state, selectedQuiz: { ...payload } }
         case 'SET_OPTIONS_SELECTED':
             const { selectedOpt, optKey } = payload
             return { ...state, optionsSelected: { ...state.optionsSelected, [optKey]: selectedOpt } }
