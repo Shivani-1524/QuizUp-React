@@ -4,8 +4,8 @@ import { useQuiz } from '../../../Context/quiz-context'
 const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const { options, question, questionNumber } = props
     const { quizDispatch, quizState } = useQuiz()
-    const [correctAnsCount, setCorrectAnsCount] = useState(1)
-    const [wrongAnsCount, setWrongAnsCount] = useState(1)
+    // const [correctAnsCount, setCorrectAnsCount] = useState(1)
+    // const [wrongAnsCount, setWrongAnsCount] = useState(1)
 
     const getColorClass = (index) => {
         if (submitBtnVisible) {
@@ -32,12 +32,6 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const handleOptionClick = (selectedOptIndex) => {
         quizDispatch({ type: 'SET_OPTIONS_SELECTED', payload: { selectedOpt: selectedOptIndex, optKey: questionNumber - 1 } })
     }
-
-    useEffect(() => {
-        return () => {
-            quizDispatch({ type: 'SET_QUIZ_STATS', payload: { correctCount: correctAnsCount, wrongCount: wrongAnsCount } })
-        }
-    }, [])
 
     return (
         <div className="quiz-container">

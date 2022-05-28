@@ -1,8 +1,8 @@
 const initQuizStats = {
     selectedQuiz: '',
-    attemptedQuiz: {},
+    attemptedQuizStats: [],
     optionsSelected: {},
-    quizScore: { score: '0', wrongAns: '0' }
+    quizScore: { correctAns: '0', incorrectAns: '0', unanswered: '0' }
 }
 
 const quizReducer = (state, { type, payload }) => {
@@ -10,12 +10,12 @@ const quizReducer = (state, { type, payload }) => {
         case 'SET_SELECTED_QUIZ':
             return { ...state, selectedQuiz: payload }
         case 'SET_ATTEMPTED_QUIZ':
-            return { ...state, attemptedQuiz: { ...state.attemptedQuiz, [payload]: 1 } }
+            return { ...state, attemptedQuizStats: { ...state.attemptedQuiz, [payload]: 1 } }
         case 'SET_OPTIONS_SELECTED':
             const { selectedOpt, optKey } = payload
             return { ...state, optionsSelected: { ...state.optionsSelected, [optKey]: selectedOpt } }
-        case 'SET_QUIZ_SCORE':
-            return { ...state, quizScore: { ...state.quizScore, score: parseInt(state.quizScore.score) + 1 } }
+        case 'SET_CORRECTANS':
+            return { ...state, quizScore: { ...state.quizScore, correctAns: parseInt(state.quizScore.correctAns) + 1 } }
         // case 'SET_QUIZ_STATS':
         //     console.log('ugh')
         //     switch (payload) {
@@ -28,8 +28,10 @@ const quizReducer = (state, { type, payload }) => {
         //         default:
         //             return state
         //     }
-        case 'SET_QUIZ_WRONGANS':
-            return { ...state, quizScore: { ...state.quizScore, wrongAns: parseInt(state.quizScore.wrongAns) + 1 } }
+        case 'SET_WRONGANS':
+            return { ...state, quizScore: { ...state.quizScore, incorrectAns: parseInt(state.quizScore.incorrectAns) + 1 } }
+        case 'SET_NOANS':
+            return { ...state, quizScore: { ...state.quizScore, unanswered: parseInt(state.quizScore.unanswered) + 1 } }
         case 'CLEAR_DATA':
             return { ...initQuizStats, attemptedQuiz: state.attemptedQuiz }
         default:

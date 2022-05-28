@@ -4,11 +4,14 @@ import { Navbar } from '../../Components/Navbar/Navbar'
 import { Footer } from '../../Components/Footer.js'
 import { CategoryCard } from './CategoryCard'
 import { handleGetApi } from '../../Utils/getRequests'
+import { useQuiz } from '../../Context/quiz-context'
 
 
 const HomePage = () => {
     const [quizData, setQuizData] = useState(false)
+    const { quizDispatch } = useQuiz()
     useEffect(() => {
+        quizDispatch({ type: 'CLEAR_DATA' });
         (async () => {
             const { data, error } = await handleGetApi("/api/quizzes")
             data ? setQuizData(data.quizzes) : console.log(error)

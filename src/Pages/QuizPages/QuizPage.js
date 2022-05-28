@@ -19,14 +19,17 @@ const QuizPage = () => {
     const quizHeading = questionsData?.quizName?.split(':')[1].toUpperCase()
 
     const handleQuizSubmit = () => {
-
         setQuizSubmit(true)
         quizAnswer.forEach((correctAnswer, index) => {
+            console.log(quizState.optionsSelected[index])
             if (quizState.optionsSelected[index] === correctAnswer) {
-                quizDispatch({ type: "SET_QUIZ_SCORE" })
+                quizDispatch({ type: "SET_CORRECTANS" })
+            }
+            else if (quizState.optionsSelected[index] === undefined) {
+                quizDispatch({ type: "SET_NOANS" })
             }
             else if (quizState.optionsSelected[index] !== correctAnswer) {
-                quizDispatch({ type: "SET_QUIZ_WRONGANS" })
+                quizDispatch({ type: "SET_WRONGANS" })
             }
         })
     }
@@ -47,6 +50,7 @@ const QuizPage = () => {
                 console.log(error)
             }
         })()
+
     }, [])
 
 
@@ -63,8 +67,8 @@ const QuizPage = () => {
                         {questions.map(quest => <Question props={quest} key={quest.questionNumber} correctOptions={quizAnswer} submitBtnVisible={quizSubmit} />)}
                         {!quizSubmit && <button id="btn-quiz-submit" onClick={handleQuizSubmit} className="btn primary-btn solid btn-quiz-sbmt">Get Your Scores</button>}
                         {quizSubmit && <div>
-                            <p className="rg-p score center-txt bold">Your quiz score: {quizState.quizScore.score}</p>
-                            <Link to="/score" className="rg-p violet-txt bold link-respage center-txt">View Your Score
+                            <p className="rg-p score center-txt bold">Your quiz score: {quizState.quizScore.correctAns}</p>
+                            <Link to={"/score"} className="rg-p violet-txt bold link-respage center-txt">View Your Score
                                 page</Link>
                         </div>}
                     </div>
