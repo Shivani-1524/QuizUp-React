@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './homepage.css'
-import { Navbar } from '../../Components/Navbar/Navbar'
-import { Footer } from '../../Components/Footer.js'
+import { Navbar, Footer } from '../../Components/index'
 import { CategoryCard } from './CategoryCard'
 import { handleGetApi } from '../../Utils/getRequests'
 import { useQuiz } from '../../Context/quiz-context'
