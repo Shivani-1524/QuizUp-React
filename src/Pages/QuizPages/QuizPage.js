@@ -19,7 +19,6 @@ const QuizPage = () => {
     const [showModal, setShowModal] = useState(false)
 
 
-
     const handleQuizSubmit = () => {
         setShowSubmitBtn(false)
         quizAnswer.forEach((correctAnswer, index) => {
@@ -36,10 +35,7 @@ const QuizPage = () => {
         handleQuizSubmit()
     }
 
-
-
     useEffect(() => {
-
         (async () => {
             const { data, error } = await handleGetApi(`/api/quiz/${quizId}`)
             console.log(data)
@@ -55,6 +51,7 @@ const QuizPage = () => {
         timeLeft <= 1 && setShowModal(true)
         return () => clearInterval(timer);
     }, [timeLeft])
+
 
     return (
         <div className="content-container">
@@ -85,8 +82,6 @@ const QuizPage = () => {
                 </div>
             </div>
             }
-
-
             {questionsData &&
                 <div>
                     <header className="quiz-title center-items">
