@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Navigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import NavLogo from "../../Assets/images/nav-logo.png"
 import './navbar.css'
 import { FontAwesomeIcon, faUser, faMagnifyingGlass, faRightFromBracket, faBars, faCircleUser } from '../../Assets/icons/icons'

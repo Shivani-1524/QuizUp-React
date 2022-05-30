@@ -19,9 +19,6 @@ const QuizPage = () => {
     const { questions, quizAnswer } = questionsData
     const quizHeading = questionsData?.quizName?.split(':')[1].toUpperCase()
     const valueRef = useRef();
-    //knowledgelevel->no.ofquizattempted
-    //coins->correctanswers*5-no.ofattempts*3
-    //score->correctanswers*10/no.of.attempts
     const handleQuizSubmit = () => {
         setQuizSubmit(true)
         quizAnswer.forEach((correctAnswer, index) => {
