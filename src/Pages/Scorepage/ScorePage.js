@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Navbar } from '../../Components/Navbar/Navbar'
 import './scorepage.css'
 import Lottie from 'react-lottie';
 import animationData from '../../Assets/lotties/game.json';
-import { Link } from 'react-router-dom'
 import { useQuiz } from '../../Context/quiz-context'
 import { WhatsappShareButton, WhatsappIcon } from 'react-share'
+
 
 const ScorePage = (props) => {
     const defaultOptions = {

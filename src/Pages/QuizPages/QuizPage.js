@@ -63,7 +63,7 @@ const QuizPage = () => {
                         {!quizSubmit && <button id="btn-quiz-submit" onClick={handleQuizSubmit} className="btn primary-btn solid btn-quiz-sbmt">Get Your Scores</button>}
                         {quizSubmit && <div>
                             <p className="rg-p score center-txt bold">Your quiz score: {quizState.quizScore.correctAns}</p>
-                            <Link to={"/score"} className="rg-p violet-txt bold link-respage center-txt">View Your Score
+                            <Link to="/score" replace className="rg-p violet-txt bold link-respage center-txt">View Your Score
                                 page</Link>
                         </div>}
                     </div>
