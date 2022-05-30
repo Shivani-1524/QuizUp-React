@@ -5,6 +5,7 @@ import { handleGetApi } from '../../Utils/getRequests'
 import { Question } from './Components/Question'
 import { useQuiz } from '../../Context/quiz-context'
 import { Link } from 'react-router-dom'
+import { Navbar } from '../../Components/Navbar/Navbar'
 
 const QuizPage = () => {
     const { quizId } = useParams()
@@ -57,6 +58,7 @@ const QuizPage = () => {
 
     return (
         <div className="content-container">
+            <Navbar />
             <div className="quiz-timer">
                 <p className="md-title violet-txt bold">TIME LEFT : <span className="orange-txt">00:{timeLeft}</span></p>
             </div>
