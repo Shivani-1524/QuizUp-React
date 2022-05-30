@@ -17,7 +17,6 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
             if (quizState.optionsSelected[questionNumber - 1] != correctOptions[questionNumber - 1] && index == quizState.optionsSelected[questionNumber - 1]) {
                 // quizDispatch({ type: 'SET_QUIZ_STATS', payload: 'wrong' })
                 // setWrongAnsCount(prev => prev + 1)
-                console.log("hi")
                 return 'red-bg'
             }
             else return 'grey-bg'
