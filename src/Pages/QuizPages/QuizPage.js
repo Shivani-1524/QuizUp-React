@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { handleGetApi } from '../../Utils/get-requests'
 import { Question } from './Components/Question'
 import { useQuiz } from '../../Context/quiz-context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { TimerModal } from './Components/TimerModal'
 import { Timer } from './Components/Timer'
 import { handlePostStat } from '../../Utils/quizstats-requests'
@@ -19,6 +19,8 @@ const QuizPage = () => {
     const { questions, quizAnswer } = questionsData
     const quizHeading = questionsData?.quizName?.split(':')[1].toUpperCase()
     const valueRef = useRef();
+    const navigate = useNavigate();
+
     const handleQuizSubmit = () => {
         setQuizSubmit(true)
         quizAnswer.forEach((correctAnswer, index) => {
@@ -42,7 +44,7 @@ const QuizPage = () => {
     }
 
     useEffect(() => {
-        valueRef.current = quizState;
+        valueRef.quizState = quizState;
     }, [quizState])
 
     useEffect(() => {
@@ -58,8 +60,8 @@ const QuizPage = () => {
         })()
         return async () => {
             const currentQuizStat = {
-                quizScores: { ...valueRef.current.quizScore },
-                quizId: { ...valueRef.current.selectedQuiz }
+                quizScores: { ...valueRef.quizState.quizScore },
+                quizId: { ...valueRef.quizState.selectedQuiz }
             }
             const res = await handlePostStat(currentQuizStat)
             !res?.success && console.error(res?.errorData)
@@ -69,6 +71,9 @@ const QuizPage = () => {
 
     return (
         <div className="content-container">
+            <button onClick={() => {
+                navigate('/', { replace: true })
+            }} className='btn secondary-btn solid btn-quitquiz'>Quit Game</button>
             <Timer quizSubmit={quizSubmit} setShowModal={setShowModal} />
             {showModal && <TimerModal handleScoreClick={handleModalScoreClick} />}
             {questionsData &&
@@ -81,7 +86,7 @@ const QuizPage = () => {
                         {!quizSubmit && <button id="btn-quiz-submit" onClick={handleQuizSubmit} className="btn primary-btn solid btn-quiz-sbmt">Get Your Scores</button>}
                         {quizSubmit && <div>
                             <p className="rg-p score center-txt bold">Your quiz score: {quizState.quizScore.correctAns}</p>
-                            <Link to={"/score"} className="rg-p violet-txt bold link-respage center-txt">View Your Score
+                            <Link to={"/score"} replace className="rg-p violet-txt bold link-respage center-txt">View Your Score
                                 page</Link>
                         </div>}
                     </div>

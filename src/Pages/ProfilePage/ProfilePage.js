@@ -68,8 +68,8 @@ const ProfilePage = () => {
                 }
                 <div className='stats-rules-container'>
                     <h1 className='center-txt'>How Do These QuizStats Work?</h1>
-                    <div className=''>
-                        <ul class="styled-list list-style-none mg-t-20">
+                    <div>
+                        <ul className="styled-list list-style-none mg-t-20">
                             <li>The <span className='bold'>overall score</span> is calculated based on the number of attempts you've given for each topic and on the correct answers </li>
                             <li>Your <span className='bold'>knowledge level</span> is deducted based on the number of questions you've skipped</li>
                             <li>Every Player starts off with <span className='bold'>20 coins</span> and is increased and decreased with the number of correct or wrong answers</li>

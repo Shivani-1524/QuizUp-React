@@ -14,6 +14,16 @@
   padding: 10px;
   border-radius: 7px;
 }
+.btn-quitquiz {
+  position: fixed;
+  bottom: 5rem;
+  right: 20px;
+  background-color: var(--red-color);
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 7px;
+}
 
 
 .link-respage {
