@@ -18,6 +18,5 @@ export const handleGetApi = async (url) => {
             msg: "Unexpected Error Ocurred",
         }
     }
-
 }
 

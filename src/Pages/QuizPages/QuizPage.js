@@ -41,7 +41,7 @@ const QuizPage = () => {
                 setQuestionsData(data?.quiz)
                 setSelectedQuiz(data?.quiz?._id)
             } else {
-                console.log(error)
+                console.error(error)
             }
         })()
         const timer =

@@ -10,7 +10,7 @@ const HomePage = () => {
     useEffect(() => {
         (async () => {
             const { data, error } = await handleGetApi("/api/quizzes")
-            data ? setQuizData(data.quizzes) : console.log(error)
+            data ? setQuizData(data.quizzes) : console.error(error)
         })()
     }, [])
     return (
