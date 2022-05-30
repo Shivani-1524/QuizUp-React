@@ -24,7 +24,6 @@ const QuizPage = () => {
         quizAnswer.forEach((correctAnswer, index) => {
             if (optionsSelected[index] === correctAnswer) {
                 setQuizScore(prev => parseInt(prev) + 1)
-                console.log("press f")
             }
         })
     }
@@ -38,7 +37,6 @@ const QuizPage = () => {
     useEffect(() => {
         (async () => {
             const { data, error } = await handleGetApi(`/api/quiz/${quizId}`)
-            console.log(data)
             if (data) {
                 setQuestionsData(data?.quiz)
                 setSelectedQuiz(data?.quiz?._id)

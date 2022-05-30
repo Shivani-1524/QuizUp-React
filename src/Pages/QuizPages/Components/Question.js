@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useQuiz } from '../../../Context/quiz-context'
 
 const Question = ({ props, submitBtnVisible, correctOptions }) => {
@@ -8,7 +8,6 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const getColorClass = (index) => {
         if (!submitBtnVisible) {
             if (optionsSelected[questionNumber - 1] == correctOptions[questionNumber - 1] && index == optionsSelected[questionNumber - 1]) {
-                console.log(index)
                 return 'green-bg'
             }
             if (optionsSelected[questionNumber - 1] != correctOptions[questionNumber - 1] && index == optionsSelected[questionNumber - 1]) {
@@ -27,9 +26,7 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const handleOptionClick = (selectedOptIndex) => {
         setOptionsSelected(prev => ({ ...prev, [questionNumber - 1]: selectedOptIndex }))
     }
-    (() => {
-        console.log("PODI MOMMYYY")
-    })()
+
     return (
         <div className="quiz-container">
             <p className="rg-title new-font bold mb-20">Question {questionNumber}.</p>
