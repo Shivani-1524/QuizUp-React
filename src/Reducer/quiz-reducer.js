@@ -6,7 +6,6 @@ const initQuizStats = {
 }
 
 const quizReducer = (state, { type, payload }) => {
-    console.log("PLOOOT", type, payload);
     switch (type) {
         case 'SET_SELECTED_QUIZ':
             return { ...state, selectedQuiz: payload }
@@ -17,18 +16,6 @@ const quizReducer = (state, { type, payload }) => {
             return { ...state, optionsSelected: { ...state.optionsSelected, [optKey]: selectedOpt } }
         case 'SET_CORRECTANS':
             return { ...state, quizScore: { ...state.quizScore, correctAns: parseInt(state.quizScore.correctAns) + 1 } }
-        // case 'SET_QUIZ_STATS':
-        //     console.log('ugh')
-        //     switch (payload) {
-        //         case 'correct':
-        //             console.log("dips corect")
-        //             return { ...state, quizScore: { ...state.quizScore, correctAns: 100 } }
-        //         case 'wrong':
-        //             console.log("dips wrong")
-        //             return { ...state, quizScore: { ...state.quizScore, wrongAns: 50 } }
-        //         default:
-        //             return state
-        //     }
         case 'SET_WRONGANS':
             return { ...state, quizScore: { ...state.quizScore, incorrectAns: parseInt(state.quizScore.incorrectAns) + 1 } }
         case 'SET_NOANS':

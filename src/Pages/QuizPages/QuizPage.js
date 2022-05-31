@@ -36,10 +36,8 @@ const QuizPage = () => {
     }
 
     useEffect(() => {
-        console.log("CHECK1");
         (async () => {
             const { data, error } = await handleGetApi(`/api/quiz/${quizId}`)
-            console.log("IMMA RUN")
             if (data) {
                 setQuestionsData(data?.quiz)
                 quizDispatch({ type: 'SET_SELECTED_QUIZ', payload: data?.quiz?.quizName })
@@ -47,9 +45,7 @@ const QuizPage = () => {
                 console.log(error)
             }
         })()
-
     }, [])
-    console.log("CHECK2");
 
 
     return (
