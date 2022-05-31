@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useQuiz } from '../../../Context/quiz-context'
 
 const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const { options, question, questionNumber } = props
     const { quizDispatch, quizState } = useQuiz()
-    const [correctAnsCount, setCorrectAnsCount] = useState(1)
-    const [wrongAnsCount, setWrongAnsCount] = useState(1)
 
     const getColorClass = (index) => {
         if (submitBtnVisible) {
