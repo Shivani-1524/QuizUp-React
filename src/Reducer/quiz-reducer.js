@@ -6,6 +6,7 @@ const initQuizStats = {
 }
 
 const quizReducer = (state, { type, payload }) => {
+    console.log("PLOOOT", type, payload);
     switch (type) {
         case 'SET_SELECTED_QUIZ':
             return { ...state, selectedQuiz: payload }

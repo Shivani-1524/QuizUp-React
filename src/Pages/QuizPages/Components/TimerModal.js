@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const TimerModal = ({ handleScoreClick, quizId }) => {
+const TimerModal = ({ handleScoreClick }) => {
     return (
         <div className="modal-wrapper">
             <div className="modal-container">
