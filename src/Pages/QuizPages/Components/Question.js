@@ -8,6 +8,7 @@ const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const [wrongAnsCount, setWrongAnsCount] = useState(1)
     let count = 0
     console.log("options: ", options)
+    //NOT SURE WHY THE CONSOLE.LOGS ARE PRINTING LIKE THAT
 
     const getColorClass = (index) => {
         count++;
