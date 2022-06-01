@@ -15,6 +15,7 @@ const QuizPage = () => {
     const { questions, quizAnswer } = questionsData
     const quizHeading = questionsData?.quizName?.split(':')[1].toUpperCase()
 
+
     const handleQuizSubmit = () => {
         setQuizSubmit(true)
         quizAnswer.forEach((correctAnswer, index) => {
