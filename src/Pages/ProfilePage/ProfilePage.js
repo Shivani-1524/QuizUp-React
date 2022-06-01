@@ -11,7 +11,6 @@ const ProfilePage = () => {
     useEffect(() => {
         (async () => {
             const res = await handleGetStat()
-            console.log(res)
             if (res?.success) {
                 setProfileData(res.data.userStats)
                 setUserStatsResult(res.data.userStats.reduce(getUserCalcStats, { coins: 20, knowledgeLevel: 0, score: 0 }))

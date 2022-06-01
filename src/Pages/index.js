@@ -1,5 +1,5 @@
 import { HomePage } from './HomePage/HomePage'
-import { ScorePage } from './Scorepage/ScorePage'
+import { ScorePage } from './ScorePage/ScorePage'
 import { QuizPage } from './QuizPages/QuizPage'
 import { LoginPage } from './AuthPages/LoginPage'
 import { LogoutPage } from './AuthPages/LogoutPage'

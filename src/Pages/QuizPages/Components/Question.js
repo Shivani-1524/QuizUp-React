@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useQuiz } from '../../../Context/quiz-context'
 
 const Question = ({ props, submitBtnVisible, correctOptions }) => {
     const { options, question, questionNumber } = props
     const { quizDispatch, quizState } = useQuiz()
-    // const [correctAnsCount, setCorrectAnsCount] = useState(1)
-    // const [wrongAnsCount, setWrongAnsCount] = useState(1)
-
     const getColorClass = (index) => {
         if (submitBtnVisible) {
             if (quizState.optionsSelected[questionNumber - 1] == correctOptions[questionNumber - 1] && index == quizState.optionsSelected[questionNumber - 1]) {
-                // quizDispatch({ type: 'SET_QUIZ_STATS', payload: 'correct' })
-                // setCorrectAnsCount(prev => prev + 1)
                 return 'green-bg'
             }
             if (quizState.optionsSelected[questionNumber - 1] != correctOptions[questionNumber - 1] && index == quizState.optionsSelected[questionNumber - 1]) {
-                // quizDispatch({ type: 'SET_QUIZ_STATS', payload: 'wrong' })
-                // setWrongAnsCount(prev => prev + 1)
-                console.log("hi")
                 return 'red-bg'
             }
             else return 'grey-bg'

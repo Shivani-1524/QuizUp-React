@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import './quizpage.css'
 import { useParams } from 'react-router-dom'
 import { handleGetApi } from '../../Utils/get-requests'
@@ -21,10 +21,13 @@ const QuizPage = () => {
     const valueRef = useRef();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        valueRef.quizState = quizState;
+    }, [quizState])
+
     const handleQuizSubmit = () => {
         setQuizSubmit(true)
         quizAnswer.forEach((correctAnswer, index) => {
-            console.log(quizState.optionsSelected[index])
             if (quizState.optionsSelected[index] === correctAnswer) {
                 quizDispatch({ type: "SET_CORRECTANS" })
             }
@@ -35,22 +38,15 @@ const QuizPage = () => {
                 quizDispatch({ type: "SET_WRONGANS" })
             }
         })
-
     }
 
-    const handleModalScoreClick = () => {
-        setShowModal(false)
-        handleQuizSubmit()
+    const wrapperSetModalState = (val) => {
+        setShowModal(val)
     }
-
-    useEffect(() => {
-        valueRef.quizState = quizState;
-    }, [quizState])
 
     useEffect(() => {
         (async () => {
             const { data, error } = await handleGetApi(`/api/quiz/${quizId}`)
-            console.log(data)
             if (data) {
                 setQuestionsData(data?.quiz)
                 quizDispatch({ type: 'SET_SELECTED_QUIZ', payload: { quizName: data?.quiz?.quizName, quizId: data?.quiz?._id } })
@@ -69,13 +65,15 @@ const QuizPage = () => {
     }, [])
 
 
+
+
     return (
         <div className="content-container">
             <button onClick={() => {
                 navigate('/', { replace: true })
             }} className='btn secondary-btn solid btn-quitquiz'>Quit Game</button>
-            <Timer quizSubmit={quizSubmit} setShowModal={setShowModal} />
-            {showModal && <TimerModal handleScoreClick={handleModalScoreClick} />}
+            {!showModal && <Timer quizSubmit={quizSubmit} showModalValue={showModal} wrapperSetModalState={wrapperSetModalState} />}
+            {showModal && <TimerModal handleQuizSubmit={handleQuizSubmit} showModalValue={showModal} wrapperSetModalState={wrapperSetModalState} />}
             {questionsData &&
                 <div>
                     <header className="quiz-title center-items">

@@ -6,7 +6,6 @@ const loginUser = async (loginData) => {
         const encodedToken = res.data.encodedToken
         axios.defaults.headers.common['authorization'] = encodedToken;
         if (res.status === 200 || res.status === 201) {
-            console.log("INNN")
             return {
                 data: res.data.encodedToken,
                 msg: "Logged in Successfully",
@@ -24,7 +23,6 @@ const loginUser = async (loginData) => {
 const signupUser = async (signupData) => {
     try {
         const res = await axios.post('/api/auth/signup', { ...signupData })
-        console.log(res)
         if (res.status === 201 || res.status === 200) {
             const encodedToken = res.data.encodedToken
             axios.defaults.headers.common['authorization'] = encodedToken;

@@ -16,7 +16,6 @@ const LoginPage = () => {
 
     const handleUserLogin = async (e) => {
         e.preventDefault()
-        console.log(loginData)
         try {
             const { data, msg, errorData } = await loginUser(loginData)
             if (!errorData[0]) {

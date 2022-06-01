@@ -5,10 +5,8 @@ import { formatDate, requiresAuth } from "../utils/authUtils";
 
 
 export const postUserQuizStats = function (schema, request) {
-    console.log("in stattts")
     const userId = requiresAuth.call(this, request);
     const { quizStat } = JSON.parse(request.requestBody)
-    console.log(quizStat, userId)
     try {
         if (!userId) {
             new Response(
@@ -22,7 +20,6 @@ export const postUserQuizStats = function (schema, request) {
         let userStats = schema.users.findBy({ _id: userId }).quizStats;
         if (userStats.some((item) => item.quizId === quizStat.quizId)) {
             const matchStat = userStats.find((item) => item.quizId === quizStat.quizId)
-            console.log("MATCHHH", matchStat)
             let attemptedVal = parseInt(matchStat?.attemptCount)
             userStats = userStats.filter((item) => item.quizId !== quizStat.quizId)
             userStats.push({

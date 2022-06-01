@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
 
-const Timer = ({ setShowModal, quizSubmit }) => {
+const Timer = ({ showModalValue, quizSubmit, wrapperSetModalState }) => {
     const [timeLeft, setTimeLeft] = useState(10)
     useEffect(() => {
         const timer = quizSubmit === false && timeLeft > 0 && setInterval(() => setTimeLeft(prev => prev - 1), 1000);
-        timeLeft <= 1 && setShowModal(true)
+        timeLeft < 1 && wrapperSetModalState(true)
         return () => clearInterval(timer);
     })
     return (

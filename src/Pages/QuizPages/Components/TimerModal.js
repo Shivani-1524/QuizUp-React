@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const TimerModal = ({ handleScoreClick, quizId }) => {
+const TimerModal = ({ handleQuizSubmit, showModalValue, wrapperSetModalState }) => {
+    const handleScoreClick = () => {
+        wrapperSetModalState(false)
+        handleQuizSubmit()
+    }
     return (
         <div className="modal-wrapper">
             <div className="modal-container">
