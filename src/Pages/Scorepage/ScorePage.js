@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar } from '../../Components/Navbar/Navbar'
-import './scorepage.css'
+// import './scorepage.css'
 import Lottie from 'react-lottie';
 import animationData from '../../Assets/lotties/game.json';
 import { useQuiz } from '../../Context/quiz-context'
