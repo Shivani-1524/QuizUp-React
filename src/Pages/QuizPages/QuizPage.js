@@ -71,4 +71,5 @@ const QuizPage = () => {
     )
 }
 
+
 export { QuizPage }
