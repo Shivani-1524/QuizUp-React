@@ -47,7 +47,6 @@ const QuizPage = () => {
         })()
     }, [])
 
-
     return (
         <div className="content-container">
             <Timer quizSubmit={quizSubmit} setShowModal={setShowModal} />
