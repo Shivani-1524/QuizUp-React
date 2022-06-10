@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import './homepage.css'
 import { Navbar, Footer } from '../../Components/index'
 import { CategoryCard } from './CategoryCard'
-import { handleGetApi } from '../../Utils/getRequests'
+import { handleGetApi } from '../../Utils/get-requests'
+import { useQuiz } from '../../Context/quiz-context'
 
 
 const HomePage = () => {
     const [quizData, setQuizData] = useState(false)
+    const { quizDispatch } = useQuiz()
     useEffect(() => {
+        quizDispatch({ type: 'CLEAR_DATA' });
         (async () => {
             const { data, error } = await handleGetApi("/api/quizzes")
             data ? setQuizData(data.quizzes) : console.log(error)
         })()
-
     }, [])
     return (
         <div>
@@ -36,7 +38,7 @@ const HomePage = () => {
             <section className="quiz-content">
                 <h1 className="md-title new-font">Categories</h1>
                 <div className="quiz-cards mg-t-30">
-                    {quizData && quizData.map(item => <CategoryCard props={item} />)}
+                    {quizData && quizData.map(item => <CategoryCard key={item._id} props={item} />)}
                 </div>
             </section>
             <Footer />
