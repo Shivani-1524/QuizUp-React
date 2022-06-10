@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 
 const Timer = ({ showModalValue, quizSubmit, wrapperSetModalState }) => {
-    const [timeLeft, setTimeLeft] = useState(10)
+    const [timeLeft, setTimeLeft] = useState(30)
     useEffect(() => {
         const timer = quizSubmit === false && timeLeft > 0 && setInterval(() => setTimeLeft(prev => prev - 1), 1000);
         timeLeft < 1 && wrapperSetModalState(true)
